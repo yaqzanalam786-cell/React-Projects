@@ -1,8 +1,11 @@
 import React from 'react'
+import { Login } from '../Components'
 
 function LoginPg() {
   return (
-    <div>me loginPg hon </div>
+    <div  className='py-12'>
+      <Login/>
+    </div>
   )
 }
 

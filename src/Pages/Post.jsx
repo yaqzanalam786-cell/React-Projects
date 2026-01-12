@@ -8,3 +8,4 @@ function Post() {
 
 export default Post
 //yeh page pe ek particular post dikhegi, or usko edit or dlt ka button yahan sirf button hsow hoga edit k paga lg hai
+//yahna pe post card show kro or uske saath rdit or dlt ke button

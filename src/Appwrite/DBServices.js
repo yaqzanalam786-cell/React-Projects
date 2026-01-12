@@ -16,12 +16,12 @@ export class Service {
     }
 
     
-    async createDocument ({content, image, userId}){
+    async createDocument ({content, featuredImage, userId}){
         try {
             return await this.databases.createDocument(config.appwriteDBId,  config.appwriteTableId, ID.unique(),  {
                
                 content,
-                image,
+                featuredImage,
                 userId,
                 
               
@@ -33,11 +33,11 @@ export class Service {
     }
 
    
-    async updateDoc ($id,{content, image, userId}){
+    async updateDoc ($id,{content, featuredImage, userId}){
         try {
             return await this.databases.updateDocument(config.appwriteDBId,  config.appwriteTableId, $id,  {
                content,
-                image,
+               featuredImage,
                 userId,
                 
                 

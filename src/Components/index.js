@@ -9,6 +9,8 @@ import RsideNav from "./RsideNav"
 import SideNav from "./SideNav"
 import Signup from "./Signup"
 import Input from "./Input"
+import Button from "./Button"
+import LogoutBtn from "./LogoutBtn"
 
-export {AuthLayout,Container,Header,Login,Logo,PostCard,PostForm,RsideNav,SideNav,Signup,Input}
+export {AuthLayout,Container,Header,Login,Logo,PostCard,PostForm,RsideNav,SideNav,Signup,Input,Button,LogoutBtn}
 
