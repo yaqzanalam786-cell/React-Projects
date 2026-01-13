@@ -1,12 +1,36 @@
 import React from 'react'
 import { PostForm, Container, PostCard } from '../Components'
+import { useState, useEffect } from 'react'
+import service from '../AppWrite/DBServices'
+import { Query } from 'appwrite'
+import { useDispatch, useSelector } from 'react-redux'
+import { setAllPosts } from '../Store/PostSlice'
 
 function Home() {
+   const posts = useSelector((state)=>state.Post.posts) //ham post bhejrhe the banne ke baad to unke bolaliaya
+   const dispatch = useDispatch()
+   
+    useEffect(()=>{
+        service.listdocs([Query.orderDesc("$createdAt")]) //taake lates post top pe show hon
+        .then ((postsData)=>{
+            if (postsData){
+                dispatch(setAllPosts(postsData.documents)); //yeh krne se saari poss jo bhi db se ayengi wo saari store me save hojaengei or jb bhia ba hamnew post krenge to uski state handle achi tareeqe se hogi, post krne ke baad user ko refresh krne ki need nhi
+            }
+
+        })
+    },[])
   return (
     <div className='py-8'>
     <Container>
         <PostForm/>
-        <PostCard/>
+         <div className='flex flex-col ml-65 mr-95'>
+                
+                {posts.map((post) => (
+                    <div key={post.$id} className='p-2 w-full'>
+                        <PostCard {...post} />
+                    </div>
+                ))}
+            </div>
     </Container>
     </div>
   )

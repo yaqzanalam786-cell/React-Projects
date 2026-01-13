@@ -13,12 +13,13 @@ export default function PostForm({post})  {
  
    const dispatch = useDispatch()
     
-    const {register, handleSubmit,  setValue, control, getValues} = useForm({
+    const {register, handleSubmit, reset, setValue, control, getValues} = useForm({
         defaultValues : {
             
            
            
             content : post ?.content || "", 
+            featuredImage : post ?.featuredImage || ""
             
         }
     })
@@ -60,11 +61,12 @@ export default function PostForm({post})  {
                 const fileID = file.$id
                 
                 data.featuredImage = fileID 
+            
                  
-               const dbpost = await service.createDocument({
+            const dbpost = await service.createDocument({
                     ...data,
                    userId: userdata ? userdata.$id : "guest_user",
-                   Name : userdata.Name
+                   Name: userdata?.name || userdata?.Name || "Anonymous"
                     
                 })
                 if (dbpost){
@@ -72,6 +74,22 @@ export default function PostForm({post})  {
                  
                     dispatch(createPost(dbpost))
                     navigate(`/post/${dbpost.$id}`)
+                 
+                 
+                }
+            }
+            else {
+               const dbpost = await service.createDocument({
+                    ...data,
+                   userId: userdata ? userdata.$id : "guest_user",
+                  Name: userdata?.name || userdata?.Name || "Anonymous"
+                    
+                })
+                if (dbpost){
+                 
+                 
+                    dispatch(createPost(dbpost))
+                    reset() //take screen clear hojaye post ke baad
                  
                  
                 }
@@ -105,7 +123,7 @@ return (
         type="file"
         className = "w-60"
         accept="image/png, image/jpg, image/jpeg, image/gif"
-        {...register("image", { required: !post })}
+        {...register("image", { required: false })} //taake img necessary na ho
       />
 
       {post && (

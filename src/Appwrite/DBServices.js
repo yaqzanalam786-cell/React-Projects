@@ -16,13 +16,14 @@ export class Service {
     }
 
     
-    async createDocument ({content, featuredImage, userId}){
+    async createDocument ({content, featuredImage , userId, Name}){
         try {
             return await this.databases.createDocument(config.appwriteDBId,  config.appwriteTableId, ID.unique(),  {
                
                 content,
                 featuredImage,
                 userId,
+                Name
                 
               
             } )
@@ -69,7 +70,7 @@ export class Service {
     }
 
  
-    async listdocs (queries = [Query.equal("userId", userId)]){
+    async listdocs (queries = [Query.orderDesc("$createdAt")]){ //taaake latest post top pe show hon
         try {
             return await this.databases.listDocuments(config.appwriteDBId,  config.appwriteTableId, queries)
         } catch (error) {
