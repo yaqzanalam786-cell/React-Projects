@@ -38,72 +38,71 @@ function Login() {
     }
   }
 
-  return (
-    <div className='flex items-center justify-center w-full'>
-      <div className={`mx-auto w-full max-w-lg bg-black rounded-xl p-6 border border-black/10`}>
-      <div className="mb-1 flex justify-center over">
-                    <span className="inline-block w-full max-w-100px ">
-                        <Logo width="100%" />
-                    </span>
-                    
+ return (
+    <div className='flex items-center justify-center w-full py-4'> 
+      <div className={`mx-auto w-full max-w-md bg-black rounded-xl p-7 border border-white/10 shadow-lg`}>
+        
+        <div className="mb-4 flex justify-center">
+            <span className="inline-block w-full max-w-[80px]">
+                <Logo width="100%" />
+            </span>
         </div>
-       
-        <h2 className="text-center text-white text-2xl font-bold leading-tight">Sign in to your account</h2>
-       
-          <p className="mt-2 text-center text-base text-white/60">
-                    Don&apos;t have any account?&nbsp;
-                    <Link
-                        to="/signup"
-                        className="font-medium text-primary transition-all duration-200 hover:underline"
-                    >
-                        Sign Up
-                    </Link>
+        
+        <h2 className="text-center text-white text-xl font-bold leading-tight">
+          Sign in to your account
+        </h2>
+        
+        <p className="mt-1 text-center text-sm text-white/60">
+            Don&apos;t have any account?&nbsp;
+            <Link
+                to="/signup"
+                className="font-medium text-blue-500 hover:underline transition-all duration-200"
+            >
+                Sign Up
+            </Link>
         </p>
       
-        {error && <p className="text-red-600 mt-8 text-center">{error}</p>}
-       
-
-       
-       <form onSubmit={handleSubmit(login)} className='mt-8' >
-        <div className='space-y-5'>
+        {error && <p className="text-red-600 mt-4 text-sm text-center">{error}</p>}
         
-          <Input 
-          label = "Email:"
-          placeholder = "Enter your Email"
-          type = "email"
-          
-          {...register("email",{
-            required : true,
-            validate : {
-              matchPatern: (value) => /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(value) ||
-                        "Email address must be a valid address",
-                        
-            } 
-          })}
-          />
-          <Input
-          label = "Password:"
-          placeholder = "Enter your Password"
-          type = "password"
-          {...register("password",{
-            required : true,
-          })}
-          />
-          
-        
-          <Button
-          type='Button'
-          className="w-full bg-white cursor-pointer mt-2 font-medium  "
-           
-          > Sign in </Button>
+        <form onSubmit={handleSubmit(login)} className='mt-6'>
+            <div className='space-y-4'>
+            
+                <Input 
+                    label="Email:"
+                    placeholder="Enter your Email"
+                    type="email"
+                    className="w-full"
+                    {...register("email",{
+                        required : true,
+                        validate : {
+                            matchPatern: (value) => /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(value) ||
+                            "Email address must be a valid address",
+                        } 
+                    })}
+                />
 
-        </div>
-       </form>
-       
-       
+                <Input
+                    label="Password:"
+                    placeholder="Enter your Password"
+                    type="password"
+                    className="w-full"
+                    {...register("password",{
+                        required : true,
+                    })}
+                />
+              
+                <Button
+                    type="submit" 
+                    className="w-full bg-white text-black hover:bg-gray-200 cursor-pointer mt-2 py-2 rounded-lg font-bold transition-all duration-200"
+                > 
+                    Sign in 
+                </Button>
+
+            </div>
+        </form>
       </div>
     </div>
-  )
+)
 }
 
 export default Login

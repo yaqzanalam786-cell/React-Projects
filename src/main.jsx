@@ -59,14 +59,14 @@ const router = createBrowserRouter([
           },
                  
           {
-              path: "/edit-post/:$id",
+              path: "/edit-post/:id",
               element: (
                 <EditPost/>
               ),
           },
                
           {
-              path: "/post/:$id",
+              path: "/post/:id",
               element: <Post />,
           },
         ]

@@ -3,7 +3,8 @@ import { createSlice} from "@reduxjs/toolkit";
 
 
 const initialState = {
-    posts : []
+    posts : [],
+     currentPost: null,
 }
 
 export const postSlice = createSlice({
@@ -18,17 +19,33 @@ export const postSlice = createSlice({
       state.posts.unshift(action.payload); //take latest post top pe ho
     },
 
+    //for single post
+  setCurrentPost: (state, action) => {
+    state.currentPost = action.payload
+  },
+
+    clearPosts: (state) => {
+      state.posts = []  
+    },
+
     dltPost: (state, action) => {
       state.posts = state.posts.filter(
         post => post.$id !== action.payload
+      
+        
       );
+      
+      
+      
     },
 
     updPost: (state, action) => {
       state.posts = state.posts.map(post =>
         post.$id === action.payload.$id ? action.payload : post
       );
+      
     }
+    
   }
 
 })
@@ -36,4 +53,4 @@ export const postSlice = createSlice({
 export default postSlice.reducer
 
 
-export const {createPost, dltPost, updPost, setAllPosts} = postSlice.actions
+export const {createPost, dltPost, updPost, setAllPosts, clearPosts, setCurrentPost} = postSlice.actions

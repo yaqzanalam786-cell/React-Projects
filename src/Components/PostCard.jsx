@@ -1,7 +1,7 @@
-import React, {useId} from 'react'
+import React from 'react'
 import {Link} from 'react-router-dom'
 import service from '../AppWrite/DBServices'
-import authService from '../AppWrite/AuthService'
+
 
 
 function PostCard({
@@ -13,7 +13,7 @@ function PostCard({
 }) {
   return (
  
-   <Link to={`/post/${$id}`}>
+    <Link to={`/post/${$id}`}> 
   <div className="w-full px-4 py-3 border-y border-white/40 hover:bg-white/5 transition border-t-0">
 
    
